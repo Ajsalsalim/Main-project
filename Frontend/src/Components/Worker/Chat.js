@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 import "../User/chatstyles.css"
 import API from '../../api/api';
 import { logout } from '../../Redux/actions/AuthSlice';
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect(process.env.REACT_APP_SOCKET_URL);
 
 
 

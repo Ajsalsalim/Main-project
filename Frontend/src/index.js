@@ -11,7 +11,7 @@ import './index.css';
 import App from './App';
 import {GoogleOAuthProvider} from "@react-oauth/google"
 
-const clientId="867295455048-lsoa1nsf1cmq12qtb20ojr69jd4rvcep.apps.googleusercontent.com"
+const clientId=process.env.REACT_APP_CLIENT_ID
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

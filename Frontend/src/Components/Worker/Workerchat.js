@@ -8,7 +8,7 @@ import {useDispatch} from "react-redux"
 import "../User/chatstyles.css"
 import { logout } from '../../Redux/actions/AuthSlice';
 import API from '../../api/api';
-const socket = io.connect('http://localhost:5000');
+const socket = io.connect(process.env.REACT_APP_SOCKET_URL);
 
 const Workerchat = () => {
     const { _id,name } = useParams();
