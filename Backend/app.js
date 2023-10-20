@@ -7,7 +7,7 @@ const socketIO = require("./Socket/socket");
 
 const cors=require("cors")
 const app= express();
-app.use(cors({credentials:true, origin:"http://localhost:3000"}));
+app.use(cors({credentials:true, origin:["http://localhost:3000","https://jobgenie-orpin.vercel.app"]}));
 require("dotenv").config();
 const userrouter= require("./Routers/userrouter")
 const chatrouter = require("./Routers/chatrouter")

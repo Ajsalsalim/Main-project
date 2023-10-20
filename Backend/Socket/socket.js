@@ -3,7 +3,7 @@ const Chat = require("../Models/Chat")
 
 const socketIO = new Server({
     cors: {
-      origin: 'http://localhost:3000',
+      origin: ['http://localhost:3000','https://jobgenie-orpin.vercel.app'],
       methods: ['GET', 'POST'],
     },
   })
