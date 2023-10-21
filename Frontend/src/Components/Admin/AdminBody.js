@@ -156,7 +156,7 @@ const AdminBody = () => {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={`http://localhost:5000/uploads/${item.image}`}
+                  image={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${item.image}`}
                   alt={item.name}
                 />
                 <CardContent>
