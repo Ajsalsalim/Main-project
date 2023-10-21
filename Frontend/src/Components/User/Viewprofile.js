@@ -75,7 +75,7 @@ const Viewprofile = () => {
       console.log(res.data.message);
       if(res.data.message==="already booked"){
          setAppointment(res.data.appointment)
-      }else{
+      }else if(res.data.message==="Token invalid"){
         dispatch(logout());
         navigate("/login", { state: { isExpired: true } });
 
