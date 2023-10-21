@@ -199,7 +199,7 @@ const SearchForm = () => {
           component="img"
           height="140"
           width="100"
-          image={`http://localhost:5000/uploads/${item.profilepicture}`}
+          image={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${item.profilepicture}`}
           alt={item.name}
         />
         <CardContent>

@@ -143,7 +143,7 @@ const Chat = () => {
                 <List>
                     <ListItem button key="RemySharp">
                         <ListItemIcon>
-                        <Avatar alt="Remy Sharp" src={`http://localhost:5000/uploads/${image}`} />
+                        <Avatar alt="Remy Sharp" src={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${image}`} />
                         </ListItemIcon>
                         <ListItemText primary={workername}></ListItemText>
                     </ListItem>
@@ -159,7 +159,7 @@ const Chat = () => {
                         <>
                         <ListItem button key={user._id}  onClick={() => sendRequest(user._id)}>
                         <ListItemIcon>
-                            <Avatar alt={user.name} src={`http://localhost:5000/uploads/${user.profilepicture}`}  />
+                            <Avatar alt={user.name} src={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${user.profilepicture}`}  />
                         </ListItemIcon>
                         <ListItemText primary={user.name}></ListItemText>
                         </ListItem>

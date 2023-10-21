@@ -259,7 +259,7 @@ const HandleAction = async()=>{
         {profile.rating.map((review) => (
   <Box key={review.id} sx={{ display: 'flex', flexDirection: 'row',  marginBottom: 5 }}>
    
-    <Avatar alt={review.user.name} src={`http://localhost:5000/uploads/${review.user.profilepicture}`} sx={{ width: 64, height: 64, marginBottom: 1 }} />
+    <Avatar alt={review.user.name} src={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${review.user.profilepicture}`} sx={{ width: 64, height: 64, marginBottom: 1 }} />
 
     <Typography variant="subtitle1" sx={{ fontWeight: 'bold', marginBottom: 1 }}>
       {review.user.name}

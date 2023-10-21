@@ -221,7 +221,7 @@ const Profile = () => {
          <Grid item xs={12} sm={4}>
            <Avatar
              alt=""
-             src={`http://localhost:5000/uploads/${profile.profilepicture}`}
+             src={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${profile.profilepicture}`}
              sx={{ width: 100, height: 100  }}
            />
          </Grid>

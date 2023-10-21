@@ -74,7 +74,7 @@ const { value } = useCountUp({
             <Grid item xs={12} sm={4}>
               <Avatar
                 alt=""
-                src={`http://localhost:5000/uploads/${profileData?profileData.profilepicture:""}`}
+                src={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${profileData?profileData.profilepicture:""}`}
                 sx={{ width: 100, height: 100  }}
               />
             </Grid>
