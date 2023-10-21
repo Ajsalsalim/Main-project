@@ -55,7 +55,7 @@ const uploadprofession = async(req,res)=>{
     
     try{
     if(req.file){
-     imagePath = req.file.path;
+     imagePath = req.file.filename;
      const profession = new Profession({
         name:name,
         description:description,
