@@ -36,7 +36,7 @@ const AdminLoginform = () => {
         const adminid=res.data.admin._id
         console.log(token);
         console.log(adminid);
-        dispatch(login({token:token}))
+        dispatch(login({token:token,adminid:adminid}))
         navigate("/admin/home")
       }
 
