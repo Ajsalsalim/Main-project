@@ -28,10 +28,7 @@ const AdminBody = () => {
   const [selectedimage, setSelectedImage] = useState("");
   const navigate =useNavigate()
   const dispatch = useDispatch()
-  const form =new FormData()
-  form.append("name",name);
-  form.append("description",description)
-  form.append("image",selectedimage)
+
  
     useEffect(()=>{
        ADMINAPI.get("/admin/getprofessions")
@@ -93,11 +90,24 @@ const AdminBody = () => {
 
 
     }
-    const handleSubmit = async(professionid)=>{
-     await ADMINAPI.post(`/admin/editprofession?professionid=${professionid}`,form)
+    const handleSubmit = (professionid)=>{
+      const form =new FormData()
+      form.append("name",name);
+      form.append("description",description)
+      form.append("image",selectedimage)
+      ADMINAPI.post(`/admin/editprofession?professionid=${professionid}`,form)
       .then((res)=>{
          if(res.data.message==="Token invalid"){
           setToast(true)
+        }else{
+          toast.success("changes applied", {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
         }
        
       })
@@ -251,6 +261,7 @@ const AdminBody = () => {
                   <TextField
                     type="file"
                     accept="image/*"
+                    name='image'
                     onChange={handleImageChange}
                     fullWidth
                     variant="outlined"
