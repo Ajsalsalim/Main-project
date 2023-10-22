@@ -6,7 +6,7 @@ const Worker= require("../Models/worker")
 const Banner= require("../Models/banner");
 const jwt= require("jsonwebtoken");
 const nodemailer= require("nodemailer")
-//nodemailer
+
 
 
 
