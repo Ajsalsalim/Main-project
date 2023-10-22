@@ -109,7 +109,7 @@ const HandleAction = async()=>{
     }
      API.post("/bookservice",appointmentData)
     .then((res)=>{
-      if(res.data.message){
+      if(res.data.message==="Token invalid"){
         dispatch(logout());
         navigate("/login", { state: { isExpired: true } });
       }else{
