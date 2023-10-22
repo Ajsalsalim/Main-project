@@ -15,8 +15,8 @@ const AdminLoginform = () => {
   const dispatch =useDispatch();
 
   const token = localStorage.getItem('token');
-
-  if (token) {
+  const adminid = localStorage.getItem("adminid")
+  if (token&&adminid) {
     return <Navigate to="/admin/home" />;
   }
   
