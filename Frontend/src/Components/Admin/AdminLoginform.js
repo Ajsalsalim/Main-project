@@ -34,7 +34,7 @@ const AdminLoginform = () => {
       if(res.data.message==="login succesfull"){
         const token=res.data.token;
         console.log(token); 
-        dispatch(login({token:token,adminid:adminid}))
+        dispatch(login({token:token}))
         navigate("/admin/home")
       }
 
