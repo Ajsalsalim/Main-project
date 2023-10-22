@@ -38,7 +38,7 @@ console.log(id);
     if(profile.workerprofiledata.isverified==="rejected"){
       setProfiledata(null)
     }else if(profile.workerprofiledata.isverified==="pending") {
-      setProfiledata(profile)
+      setProfiledata(profile.workerprofiledata)
 
     }else if(profile.workerprofiledata.isverified==="verified"){
       setProfiledata(profile.workerprofiledata)
