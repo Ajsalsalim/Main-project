@@ -1,5 +1,5 @@
 import * as React from 'react';
-import  API from "../../api/api"
+import ADMINAPI from "../../api/adminapi"
 import {logout} from "../../Redux/actions/AdminauthSlice"
 import { useEffect,useState } from 'react';
 import {useNavigate} from "react-router-dom"
@@ -43,7 +43,7 @@ const AdminUserbody = () => {
 
       useEffect(()=>{
         try{
-            API.get("/admin/getusers")            
+            ADMINAPI.get("/admin/getusers")            
             
            .then((res)=>{
            
@@ -80,7 +80,7 @@ const AdminUserbody = () => {
     
       const handleActionUser = (userId,userblocked) => {
         if(!userblocked){
-          API.post(`/admin/blockuser/${userId}`)
+          ADMINAPI.post(`/admin/blockuser/${userId}`)
           .then((res) => {
             if(res.data.message==="Token invalid"){
 
@@ -113,7 +113,7 @@ const AdminUserbody = () => {
           }) 
 
         }else{
-          API.post(`/admin/unblockuser/${userId}`)
+          ADMINAPI.post(`/admin/unblockuser/${userId}`)
           .then((res)=>{
             if(res.data.message==="Token invalid"){
 

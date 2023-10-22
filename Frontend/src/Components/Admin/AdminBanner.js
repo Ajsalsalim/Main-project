@@ -4,7 +4,7 @@ import axios from "axios"
 import {useDispatch} from "react-redux"
 import {useNavigate} from "react-router-dom"
 import {logout} from "../../Redux/actions/AdminauthSlice"
-import API from "../../api/api"
+import ADMINAPI from "../../api/adminapi"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,7 +31,7 @@ const handleImageChange = (event) => {
         const formData = new FormData();
        formData.append('name', bannername);
        formData.append('image', selectedimage);
-       await API.post("/admin/uploadbanner", formData)
+       await ADMINAPI.post("/admin/uploadbanner", formData)
          .then((data)=>{
            console.log(data);
            if(data.data.message==="Token invalid"){

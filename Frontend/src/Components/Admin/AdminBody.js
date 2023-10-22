@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import {logout} from "../../Redux/actions/AdminauthSlice"
 import axios from "axios"
 import {Navigate,useNavigate} from "react-router-dom"
-import API from "../../api/api"
+import ADMINAPI from "../../api/adminapi"
 import Card from '@mui/material/Card';
 import Modal from '@mui/material/Modal';
 import CardMedia from '@mui/material/CardMedia';
@@ -34,7 +34,7 @@ const AdminBody = () => {
   form.append("image",selectedimage)
  
     useEffect(()=>{
-       API.get("/admin/getprofessions")
+       ADMINAPI.get("/admin/getprofessions")
       .then((res)=>{
         if(res.data.message==="Token invalid"){
           setToast(true)
@@ -69,7 +69,7 @@ const AdminBody = () => {
 
     const modalhandler =(professionid)=>{
       setOpen(true)
-      API.get(`/admin/getprofession?professionid=${professionid}`)
+      ADMINAPI.get(`/admin/getprofession?professionid=${professionid}`)
       .then((res)=>{
         console.log(res);
         if(res.data.message==="Token invalid"){
@@ -94,7 +94,7 @@ const AdminBody = () => {
 
     }
     const handleSubmit = async(professionid)=>{
-     await API.post(`/admin/editprofession?professionid=${professionid}`,form)
+     await ADMINAPI.post(`/admin/editprofession?professionid=${professionid}`,form)
       .then((res)=>{
          if(res.data.message==="Token invalid"){
           setToast(true)
@@ -107,7 +107,7 @@ const AdminBody = () => {
       Sweetalert.confirm("Are you sure?","You wont be able to revert this!")
       .then(async(result)=>{
         if(result.isConfirmed){
-         await API.delete(`/admin/deleteprofession/${professionid}`)
+         await ADMINAPI.delete(`/admin/deleteprofession/${professionid}`)
       .then((res)=>{
         if(res.data.message==="Token invalid"){
           setToast(true)

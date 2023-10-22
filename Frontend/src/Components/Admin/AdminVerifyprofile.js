@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import {logout} from "../../Redux/actions/AdminauthSlice"
 import axios from "axios"
 import {Navigate,useNavigate} from "react-router-dom"
-import API from "../../api/api"
+import ADMINAPI from "../../api/adminapi"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Box, Paper, Container, Typography, Avatar, Grid,Button } from '@mui/material'
@@ -25,7 +25,7 @@ const AdminVerifyprofile = () => {
     useEffect(()=>{
 
        
-           API.get("/admin/profilelist")
+           ADMINAPI.get("/admin/profilelist")
            .then((res)=>{
             if(res.data.message==="Token invalid"){
               setToast(true)
@@ -48,7 +48,7 @@ const AdminVerifyprofile = () => {
         const verifyprofile= async(id)=>{
             
             console.log(id);
-           await API.get(`/admin/verifyprofile/${id}`)
+           await ADMINAPI.get(`/admin/verifyprofile/${id}`)
             .then((res)=>{
               if(res.data.message==="Token invalid"){
                 setToast(true)
@@ -81,7 +81,7 @@ const AdminVerifyprofile = () => {
 
         const  rejectProfileWithReason=async(id,reason)=>{
           console.log(reason);
-          await API.get(`/admin/rejectprofile/${id}/${reason}`)
+          await ADMINAPI.get(`/admin/rejectprofile/${id}/${reason}`)
           .then((res)=>{
             if(res.data.message==="Token invalid"){
               setToast(true)

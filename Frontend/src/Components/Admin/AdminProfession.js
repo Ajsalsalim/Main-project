@@ -3,7 +3,7 @@ import React,{useState,useRef} from 'react'
 import { useDispatch } from 'react-redux'
 import {logout} from "../../Redux/actions/AdminauthSlice"
 import {Navigate,useNavigate} from "react-router-dom"
-import API from "../../api/api"
+import ADMINAPI from "../../api/adminapi"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cropper from "react-cropper";
@@ -59,7 +59,7 @@ const AdminProfession = () => {
           formData.append('image', selectedimage);
         }
         formData.append("description",description)
-        await API.post("/admin/uploadprofession", formData)
+        await ADMINAPI.post("/admin/uploadprofession", formData)
           .then((res)=>{
             console.log(res);
             if(res.data.message==="Token invalid"){

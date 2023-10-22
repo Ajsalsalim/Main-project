@@ -1,5 +1,5 @@
 import * as React from 'react';
-import  API from "../../api/api"
+import ADMINAPI from "../../api/adminapi"
 import { useEffect,useState } from 'react';
 import {logout} from "../../Redux/actions/AdminauthSlice"
 import {useNavigate} from "react-router-dom"
@@ -53,7 +53,7 @@ const AdminWorkerbody = () => {
 
       useEffect(()=>{
         try{
-            API.get("/admin/getworkers")
+            ADMINAPI.get("/admin/getworkers")
            .then((res)=>{
             if(res.data.message==="Token invalid"){
 
@@ -91,7 +91,7 @@ const AdminWorkerbody = () => {
     
       const handleActionUser = (workerId,workerblocked) => {
         if(!workerblocked){
-          API.post(`/admin/blockworker/${workerId}`)
+          ADMINAPI.post(`/admin/blockworker/${workerId}`)
           .then((res) => {
             if(res.data.message==="Token invalid"){
               setToast(true)
@@ -123,7 +123,7 @@ const AdminWorkerbody = () => {
           }) 
 
         }else{
-          API.post(`/admin/unblockworker/${workerId}`)
+          ADMINAPI.post(`/admin/unblockworker/${workerId}`)
           .then((res)=>{
             if(res.data.message==="Token invalid"){
               setToast(true)
