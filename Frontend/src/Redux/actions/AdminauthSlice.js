@@ -4,27 +4,22 @@ import {createSlice} from "@reduxjs/toolkit"
 const adminauthSlice=createSlice({
     name:"adminauth",
     initialState:{
-        token: localStorage.getItem("token")|| null,
-        adminid: localStorage.getItem("adminid")|null,
-        isAuthenticated:localStorage.getItem("token")?true:false,
+        token: localStorage.getItem("admintoken")|| null,
+        isAuthenticated:localStorage.getItem("admintoken")?true:false,
         message:null
     },
     reducers:{
         login(state,action){
-            const {token,adminid}=action.payload
+            const {token}=action.payload
             console.log(token);
-            localStorage.setItem("token",token);
-            localStorage.setItem("adminid",adminid)
+            localStorage.setItem("admintoken",token);
             state.token= token;
-            state.adminid=adminid
             state.isAuthenticated=true;
 
         },
         logout(state){
-            localStorage.removeItem("token");
-            localStorage.removeItem("adminid")
+            localStorage.removeItem("admintoken");
             state.token=null
-            state.adminid=null
             state.isAuthenticated=false;
 
         }

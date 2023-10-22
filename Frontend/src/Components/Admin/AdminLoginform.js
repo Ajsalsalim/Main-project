@@ -14,9 +14,9 @@ const AdminLoginform = () => {
   const navigate=useNavigate();
   const dispatch =useDispatch();
 
-  const token = localStorage.getItem('token');
-  const adminid = localStorage.getItem("adminid")
-  if (token&&adminid) {
+  const token = localStorage.getItem('admintoken');
+
+  if (token) {
     return <Navigate to="/admin/home" />;
   }
   
@@ -33,9 +33,7 @@ const AdminLoginform = () => {
       console.log(res.data.message);
       if(res.data.message==="login succesfull"){
         const token=res.data.token;
-        const adminid=res.data.admin._id
-        console.log(token);
-        console.log(adminid);
+        console.log(token); 
         dispatch(login({token:token,adminid:adminid}))
         navigate("/admin/home")
       }
