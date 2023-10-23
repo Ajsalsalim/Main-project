@@ -332,6 +332,7 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
                 fullWidth
                 variant="outlined"
                 margin="normal"
+                required
               />
               </Grid>
               <Grid item xs={12}>
