@@ -22,22 +22,7 @@ const HomeNav = () => {
         <img src="\images\attachment_117444264-removebg-preview.png" alt="logo" height={"70"} width="100" />
       </Typography>
       <Divider />
-      <ul className="mobile-navigation">
-        <li>
-          <Link activeClassName="active" to={"/home"}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <NavLink to={"/menu"}>Profile</NavLink>
-        </li>
-        <li>
-          <NavLink to={"/about"}>Chatbox</NavLink>
-        </li>
-        <li>
-          <NavLink to={"/contact"}>Appointments</NavLink> 
-        </li>
-      </ul>
+      
     </Box>
   );
 
@@ -70,22 +55,6 @@ const HomeNav = () => {
               <img src="\images\attachment_117444264-removebg-preview.png" alt="logo" height={"110"} width="110" />
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              <ul className="navigation-menu">
-                <li>
-                  <NavLink activeClassName="active" to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to={"/menu"}>Menu</NavLink>
-                </li>
-                <li>
-                  <NavLink to={"/about"}>About</NavLink>
-                </li>
-                <li>
-                  <NavLink to={"/contact"}>Contact</NavLink>
-                </li>
-              </ul>
             </Box>
            <Link to="/login" style={{textDecoration:"none",marginLeft:"auto",display:"flex",justifyContent:"end"}}><Button sx={{backgroundColor:"skyblue",color:"white",width:"8rem",height:"1.5rem",display:"flex",justifyContent:"end"}}>Login/signup</Button></Link>
           </Toolbar>
