@@ -14,7 +14,7 @@ const Footer = () => {
       backgroundColor: 'black',
       textAlign: 'center',
       height:"250px",
-      marginTop:"150px"
+      marginTop:"170px"
     }}
   >
     <Container maxWidth="lg">
