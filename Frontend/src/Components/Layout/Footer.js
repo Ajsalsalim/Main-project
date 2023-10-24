@@ -8,18 +8,19 @@ const Footer = () => {
   return (
     <Box
     sx={{
-      width: "100%",
-      height: "250px",
-      marginTop:"75px",
-      backgroundColor: "black",
-      paddingTop: "3rem",
-      paddingBottom: "1rem",
+      position: 'absolute',
+      marginTop:"auto",
+      width: '100%',
+      backgroundColor: 'black',
+      textAlign: 'center',
+      height:"250px",
+      marginTop:"80px"
     }}
   >
     <Container maxWidth="lg">
       <Grid container direction="column" alignItems="center">
         <Grid item xs={12}>
-          <Typography sx={{marginTop:"-40px"}} color="white" variant="h5">
+          <Typography  color="white" variant="h5">
           <img src="\images\attachment_117444264-removebg-preview.png" alt="logo" height={"90"} width="90" />
           </Typography>
         </Grid>
