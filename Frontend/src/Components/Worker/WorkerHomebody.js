@@ -21,6 +21,8 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
 
   const [professionlist, setProfessionlist] = useState([]);
   const [address, setAddress] = useState('')
+  const [profilecreated,setProfilecreated] = useState(false)
+  const [profile,setProfile]=useState()
   const [loading,setLoading] = useState(true)
   const workerid=localStorage.getItem("id")
   const [formData, setFormData] = useState({
@@ -81,6 +83,23 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
         setLoading(false)
         console.log(res.data);
         setFormData(res.data)
+        const profile=res.data;
+        if(profile.isprofilecreated===true){
+             setProfilecreated(true)
+            
+        }else{
+          if(profile.isverified==="rejected"){
+            toast.error("your profile has been rejected,please add again", {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+
+          }
+        }
       }
 
 
@@ -103,11 +122,7 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
           pauseOnHover: true,
           draggable: true,
         });  
-        setTimeout(()=>{
-       
-          navigate("/worker/verifyprofile")
-  
-        },5000)
+        setProfilecreated(true)
 
       }else{
         dispatch(logout())
@@ -202,7 +217,9 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
           <Container component="main" maxWidth="md">
             <Paper elevation={3}>
               <Box sx={{marginTop:"10px"}} p={3}>
-                <Typography variant="h5" gutterBottom>
+                {!profilecreated?(
+                  <>
+                   <Typography variant="h5" gutterBottom>
                   Create Profile
                 </Typography>
                 <form encType="multipart/form-data"  onSubmit={handleSubmit}>
@@ -367,6 +384,55 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
                     </Grid>
                   </Grid>
                 </form>
+
+                  </>
+
+                ):(
+                  <>
+                  <Typography variant="h5" gutterBottom>
+              Worker Profile
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={4}>
+                <Avatar
+                  alt=""
+                  src={`${process.env.REACT_APP_API_SERVER_URL}/uploads/${profile?profile.profilepicture:""}`}
+                  sx={{ width: 100, height: 100  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={8}>
+                <Typography sx={{display:"flex"}} variant="h6">Name: {profile?profile.name:""}</Typography>
+                 <Typography sx={{display:"flex"}}>Gender: {profile?profile.gender:""}</Typography>
+                <Typography sx={{display:"flex"}}>Location: {profile?profile.location:""}</Typography>
+                <Typography sx={{display:"flex"}}>Profession: {profile?profile.profession[0].name:""}</Typography>
+                <Typography sx={{display:"flex"}}>Time Preference: {profile?profile.timepreference:""}</Typography>
+                <Typography sx={{display:"flex"}}>Experience: {profile?profile.profession[0].experience:""}</Typography>
+                <Typography sx={{display:"flex"}}>Description: {profile?profile.profession[0].description:""}</Typography>
+             
+              </Grid>
+            </Grid>
+            <Stack sx={{ width: '100%' }} spacing={2}>
+     { profile && profile.isverified === "pending" ? (
+    <Alert severity="info">Please wait for verification; it may take up to 2 days.</Alert>
+  )  : (
+    <>
+      <Alert severity="success">Your profile is verified by admin.</Alert>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Button onClick={()=>navigate("/worker/profile")}
+          sx={{  height: "30px", display: "flex",backgroundColor:"skyblue","&:hover":{backgroundColor:"deepskyblue"}} }
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Edit
+        </Button>
+      </div>
+    </>
+  )}
+      </Stack>
+            </>
+                )}
+               
               </Box>
             </Paper>
           </Container>
