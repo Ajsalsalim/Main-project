@@ -6,8 +6,7 @@ import { Button,Container,Paper,Box,Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLoading,stopLoading,selectLoading } from '../../Redux/actions/LoadingSlice';
-import LinearProgress from '@mui/joy/LinearProgress';
-
+import CircularProgress from '@mui/joy/CircularProgress';
 import { useCountUp } from 'use-count-up';
 import { logout } from '../../Redux/actions/AuthSlice';
 const Appointment = () => {
@@ -35,43 +34,13 @@ const Appointment = () => {
         
       })
      },[dispatch])
-     const { value } = useCountUp({
-      isCounting: true,
-      duration: 5,
-      easing: 'linear',
-      start: 0,
-      end: 75,
-      onComplete: () => ({
-        shouldRepeat: true,
-        delay: 2,
-      }),
-    });
+     
   return (
     <Container maxWidth="md" sx={{marginTop:"60px",height:"298px"}}>
        <Paper elevation={4}>
     <Box  p={3}>
       {isLoading?(
-          <LinearProgress
-          determinate
-          variant="outlined"
-          color="danger"
-          size="sm"
-          thickness={24}
-          value={Number(value)}
-          sx={{
-            '--LinearProgress-radius': '20px',
-            '--LinearProgress-thickness': '24px',
-          }}
-        >
-          <Typography
-            level="body-xs"
-            fontWeight="xl"
-            textColor="common.white"
-            sx={{ mixBlendMode: 'difference' }}
-          >
-            LOADING… {`${Math.round(Number(value))}%`}
-          </Typography>
-        </LinearProgress>
+         <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
       ):(
 
     <>
