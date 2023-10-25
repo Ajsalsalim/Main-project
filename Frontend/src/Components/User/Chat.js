@@ -2,6 +2,7 @@ import React,{useEffect,useState,useRef} from 'react'
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux"
 import { Paper,Grid,Divider,TextField,Typography,List,ListItem,ListItemIcon,ListItemText,Avatar,Fab } from '@mui/material'
+import CircularProgress from '@mui/joy/CircularProgress';
 import SendIcon from "@mui/icons-material/Send"
 import axios from "axios"
 import io from 'socket.io-client';
@@ -22,6 +23,7 @@ const Chat = () => {
     const [message,setMessage]=useState("")
     const [text,setText]=useState(false)
     const listRef = useRef(null);
+    const [loading,setLoading]=useState(true)
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -63,7 +65,7 @@ const Chat = () => {
                 navigate("/login", { state: { isExpired: true } });
         
               }else{
-  
+                setLoading(false)
                 setUsername(res.data.username)
                 setImage(res.data.profilepicture)
                 setWorkers(res.data.workers)
@@ -170,7 +172,7 @@ const Chat = () => {
             </Grid>
             <Grid item xs={9}>
                 <List sx={{height:"60vh",overflowY:"auto"}} ref={listRef}>
-                    
+                {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
                     {workerchat.map((chat,index)=>(
                          <ListItem key={index}>
                          <Grid container> 
