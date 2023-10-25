@@ -28,7 +28,7 @@ const WorkerProfilepage = () => {
          if(profile.isverified==="verified"){
            setLoading(false)
          }else{
-            console.log("hello");
+         
             navigate("/worker/home")
          }
 

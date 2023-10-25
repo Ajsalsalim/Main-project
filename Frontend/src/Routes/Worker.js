@@ -2,7 +2,6 @@ import React,{Fragment,useState} from 'react'
 import {Route,Routes} from "react-router-dom"
 import {Navigate} from "react-router-dom"
 import WorkerHomepage from '../Pages/Worker/WorkerHomepage'
-import WorkerHomepage2 from '../Pages/Worker/WorkerHomepage2'
 import WorkerProfilepage from '../Pages/Worker/WorkerProfilepage'
 import Appointmentpage from '../Pages/Worker/Appointmentpage'
 import LottieAnimation from '../Components/User/animations/LottieAnimation'
@@ -33,7 +32,6 @@ const Worker = () => {
       ) : (
     <Routes>
     <Route path="/home" element={<WorkerHomepage/>}/>
-    <Route path="/verifyprofile" element={<WorkerHomepage2/>}/>
     <Route path="/profile" element={<WorkerProfilepage/>}/>
     <Route path="/chatbox" element={<Chatboxpage/>}/>
     <Route path="/appointments" element={<Appointmentpage/>}/>
