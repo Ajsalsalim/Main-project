@@ -1,8 +1,9 @@
 import React from 'react'
+import { Suspense, lazy } from "react";
 import HomeNav from '../../Components/Common/HomeNav'
 import HomeBody from '../../Components/Common/HomeBody'
 import HomeBanner from '../../Components/Common/HomeBanner'
-import Footer from '../../Components/Layout/Footer'
+const LazyFooter = lazy(() => import('../../Components/Layout/Footer'))
 
 const Homepage = () => {
   return (
@@ -10,7 +11,9 @@ const Homepage = () => {
     <HomeNav/>
     <HomeBanner/>
     <HomeBody/>
-    <Footer/>
+    <Suspense> 
+        <LazyFooter/>
+      </Suspense>
     
     </>
    
