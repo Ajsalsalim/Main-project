@@ -27,7 +27,7 @@ const HomeBody = () => {
   return (
     <>
    <div style={{ marginTop: "40px" }}>
-   {loading&& <CircularProgress sx={{marginTop:"300px"}} variant="outlined" />}
+   {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
    <Grid
       container
       spacing={{ xs: 2, md: 3 }}
