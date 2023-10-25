@@ -138,12 +138,12 @@ const Chat = () => {
   return (
     <div>
          <Grid sx={{marginTop:"60px"}} container>
-            <Grid item xs={12} >
+            <Grid  item xs={12} >
                 <Typography variant="h5" className="header-message">Chat</Typography>
             </Grid>
         </Grid>
         <Grid sx={{marginTop:"30px",height:"70vh",width:"80%",display:"inline-flex",justifyContent:"center"}} container component={Paper} >
-            <Grid item xs={3}>
+            <Grid sx={{backgroundColor:"skyblue"}} item xs={3}>
                 <List>
                     <ListItem button key="RemySharp">
                         <ListItemIcon>
@@ -152,8 +152,8 @@ const Chat = () => {
                         <ListItemText primary={username}></ListItemText>
                     </ListItem>
                 </List>
-                <Divider />
-                <Divider />
+                <Divider sx={{borderWidth:3,borderColor:"black"}} />
+                
                 <List>
                     {workers.map((worker)=>(
                        
@@ -205,7 +205,7 @@ const Chat = () => {
                     
                         
                 </List>
-                <Divider />
+                <Divider  sx={{borderWidth:3,borderColor:"black"}} />
                 {text?(
                   <Grid container style={{padding: '10px'}}>
                   <Grid item xs={11}>
