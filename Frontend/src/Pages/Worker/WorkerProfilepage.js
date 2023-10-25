@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import axios from "axios"
 import WorkerHomenav from '../../Components/Worker/WorkerHomenav'
 import ProfileBody from '../../Components/Worker/ProfileBody'
+import CircularProgress from '@mui/joy/CircularProgress';
 import { Navigate,useNavigate } from 'react-router-dom'
 import {useDispatch} from "react-redux"
 import Footer from '../../Components/Layout/Footer'
@@ -41,7 +42,12 @@ const WorkerProfilepage = () => {
   
   return (
     <div>
-    {loading ? null : (
+    {loading ? (
+      <>
+       <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
+      </>
+    )
+     : (
       <>
         <WorkerHomenav />
         <ProfileBody />

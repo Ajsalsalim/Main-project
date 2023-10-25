@@ -67,85 +67,111 @@ console.log(process.env.REACT_APP_API_BASE_URL);
 
   return (
     <>
-    {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
-          <Container maxWidth="md" sx={{marginTop:"60px",height:"330px"}}>
-       <Paper elevation={3}>
-    <Box  p={3}>
-      {appointments&&appointments.length>0?(
-        <Table aria-label="basic table">
-        <thead>
-          <tr>
-            <th style={{ textAlign: 'center' }}>Customer</th>
-            <th style={{ textAlign: 'center' }}>Date</th>
-            <th style={{ textAlign: 'center' }}>Time</th>
-            <th style={{ textAlign: 'center' }}>Worksite</th>
-            <th style={{ textAlign: 'center' }}>Status</th>
-            <th style={{ textAlign: 'center' }}>Action</th>
-            <th style={{ textAlign: 'center' }}>Connect</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {appointments.map((item) => (
-            <tr key={item._id}>
-              <td>{item.customer.name}</td>
-              <td>{item.date}</td>
-              <td>{item.time}</td>
-              <td>{item.location}</td>
-              <td>{item.status}</td>
-              <td>
-                <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                  {item.status === 'Requested' ? (
-                    <Button onClick={() => Confirm(item._id)} variant="contained" sx={{ backgroundColor: 'green', color: 'white', width: '70px', height: '25px' }}>
-                      Confirm
-                    </Button>
-                  ) : (item.status==="Confirmed"?(
-                    <>
-                    <Button onClick={() => Complete(item._id)} variant="contained" sx={{ backgroundColor: 'green', color: 'white', width: '80px', height: '25px' }}>
-                    jobdone
-                  </Button>
-                  </>
-                  ):(
-                    <Button disabled>jobdone</Button>
-                  )
-                    
-                   
-                    
-                    
-  )}
-                </div>
-              </td>
-              <td>
-                <div>
-                  {item.status==="Confirmed"||item.status==="Completed"?(
-                     <Button  sx={{backgroundColor:"skyblue",color:"white",height:"25px",display:"flex",justifyContent:"center",marginLeft:"auto","&:hover":{backgroundColor:"deepskyblue"}}} onClick={()=>navigate(`/worker/chat/${item.customer._id}/${item.customer.name}`)}  variant="contained" >
-                     Chat
-                   </Button>
-
-                  ):(
-                    <Button disabled  variant="contained"  sx={{backgroundColor:"skyblue",color:"white",height:"25px",display:"flex",justifyContent:"center",marginLeft:"auto","&:hover":{backgroundColor:"deepskyblue"}}}>
-                     Chat
-                   </Button>
-                    
-
-                  )}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
-      ):(
-        <h6>No appointments have been scheduled</h6>
-
-      )
-}
-      
-      </Box>
-      </Paper>
-    </Container>
-    </>
+    {loading ? (
+      <>
+        <CircularProgress sx={{ marginTop: '200px' }} variant="outlined" />
+      </>
+    ) : (
+      <>
+        <Container maxWidth="md" sx={{ marginTop: '60px', height: '330px' }}>
+          <Paper elevation={3}>
+            <Box p={3}>
+              {appointments && appointments.length > 0 ? (
+                <Table aria-label="basic table">
+                  <thead>
+                    <tr>
+                      <th style={{ textAlign: 'center' }}>Customer</th>
+                      <th style={{ textAlign: 'center' }}>Date</th>
+                      <th style={{ textAlign: 'center' }}>Time</th>
+                      <th style={{ textAlign: 'center' }}>Worksite</th>
+                      <th style={{ textAlign: 'center' }}>Status</th>
+                      <th style={{ textAlign: 'center' }}>Action</th>
+                      <th style={{ textAlign: 'center' }}>Connect</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {appointments.map((item) => (
+                      <tr key={item._id}>
+                        <td>{item.customer.name}</td>
+                        <td>{item.date}</td>
+                        <td>{item.time}</td>
+                        <td>{item.location}</td>
+                        <td>{item.status}</td>
+                        <td>
+                          <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                            {item.status === 'Requested' ? (
+                              <Button
+                                onClick={() => Confirm(item._id)}
+                                variant="contained"
+                                sx={{ backgroundColor: 'green', color: 'white', width: '70px', height: '25px' }}
+                              >
+                                Confirm
+                              </Button>
+                            ) : item.status === 'Confirmed' ? (
+                              <>
+                                <Button
+                                  onClick={() => Complete(item._id)}
+                                  variant="contained"
+                                  sx={{ backgroundColor: 'green', color: 'white', width: '80px', height: '25px' }}
+                                >
+                                  jobdone
+                                </Button>
+                              </>
+                            ) : (
+                              <Button disabled>jobdone</Button>
+                            )}
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            {item.status === 'Confirmed' || item.status === 'Completed' ? (
+                              <Button
+                                sx={{
+                                  backgroundColor: 'skyblue',
+                                  color: 'white',
+                                  height: '25px',
+                                  display: 'flex',
+                                  justifyContent: 'center',
+                                  marginLeft: 'auto',
+                                  '&:hover': { backgroundColor: 'deepskyblue' },
+                                }}
+                                onClick={() => navigate(`/worker/chat/${item.customer._id}/${item.customer.name}`)}
+                                variant="contained"
+                              >
+                                Chat
+                              </Button>
+                            ) : (
+                              <Button
+                                disabled
+                                variant="contained"
+                                sx={{
+                                  backgroundColor: 'skyblue',
+                                  color: 'white',
+                                  height: '25px',
+                                  display: 'flex',
+                                  justifyContent: 'center',
+                                  marginLeft: 'auto',
+                                  '&:hover': { backgroundColor: 'deepskyblue' },
+                                }}
+                              >
+                                Chat
+                              </Button>
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              ) : (
+                <h6>No appointments have been scheduled</h6>
+              )}
+            </Box>
+          </Paper>
+        </Container>
+      </>
+    )}
+  </>
     
   );
 };
