@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux"
 import ScrollToBottom from "react-scroll-to-bottom";
 import { useParams } from 'react-router-dom';
+import CircularProgress from '@mui/joy/CircularProgress';
 import axios from "axios"
 import io from 'socket.io-client';
 import "../User/chatstyles.css"
@@ -19,6 +20,7 @@ const Userchat = () => {
 
     const [messagelist, setMessagelist] = useState([]);
     const [message, setMessage] = useState('');
+    const [loading,setLoading]=useState(true)
     const [chatinitiated,setChatinitiated]=useState(false)
     // Use your server URL
     const userId =localStorage.getItem("id")
@@ -53,6 +55,7 @@ const Userchat = () => {
          else if(res.data.message==="didnt chat yet"){
                setChatinitiated(true)
           }else{
+            setLoading(false)
             setMessagelist(res.data)
 
           }
@@ -91,6 +94,7 @@ const Userchat = () => {
 
 
   return (
+    
     <div className="chat-window">
 
       <div className="chat-header">
@@ -98,6 +102,7 @@ const Userchat = () => {
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
+        {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
           {messagelist.map((messageContent) => {
             return (
               <div

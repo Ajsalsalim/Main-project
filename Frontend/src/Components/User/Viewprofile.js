@@ -11,6 +11,7 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import CardActions from '@mui/joy/CardActions';
 import Typography from '@mui/joy/Typography';
 import Alert from '@mui/material/Alert';
+import CircularProgress from '@mui/joy/CircularProgress';
 import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -24,6 +25,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { ToastContainer, toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import API from '../../api/api';
 import { logout } from '../../Redux/actions/AuthSlice';
@@ -133,7 +135,7 @@ const HandleAction = async()=>{
   return (
     <>
     {loading ? (
-      <p>Loading...</p>
+      <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
     ) : (
       <>
       <Card

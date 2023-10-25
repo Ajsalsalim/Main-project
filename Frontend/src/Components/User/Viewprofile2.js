@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 import { useParams } from 'react-router-dom';
 import Chip from '@mui/joy/Chip';
 import { Button,Modal,Box,Container,Paper,TextField, TextareaAutosize, } from '@mui/material';
+import CircularProgress from '@mui/joy/CircularProgress';
 import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
@@ -104,7 +105,7 @@ const Viewprofile2 = () => {
   return (
     <>
     {loading ? (
-      <p style={{marginTop:"60px"}}>Loading...</p>
+      <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
     ) : (
       <>
       <Card
