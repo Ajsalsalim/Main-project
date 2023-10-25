@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux"
 import Table from '@mui/joy/Table';
 import axios from 'axios';
+import CircularProgress from '@mui/joy/CircularProgress';
 import { Button,Container,Paper,Box } from '@mui/material';
 import API from '../../api/api';
 import { logout } from '../../Redux/actions/AuthSlice';
 
 const Appointment = () => {
   const [appointments, setAppointments] = useState([]);
+  const [loading,setLoading] = useState(true)
   const workerid = localStorage.getItem('id');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ console.log(process.env.REACT_APP_API_BASE_URL);
         navigate("/login", { state: { isExpired: true } });
 
       }else{
+        setLoading(false)
         setAppointments(res.data);
       }
    
@@ -63,7 +66,8 @@ console.log(process.env.REACT_APP_API_BASE_URL);
   };
 
   return (
-        
+    <>
+    {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
           <Container maxWidth="md" sx={{marginTop:"60px",height:"330px"}}>
        <Paper elevation={3}>
     <Box  p={3}>
@@ -141,7 +145,7 @@ console.log(process.env.REACT_APP_API_BASE_URL);
       </Box>
       </Paper>
     </Container>
-   
+    </>
     
   );
 };

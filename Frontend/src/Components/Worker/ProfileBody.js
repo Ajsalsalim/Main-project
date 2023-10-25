@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch} from "react-redux"
+import CircularProgress from '@mui/joy/CircularProgress';
 import {
   Container,
   Typography,
@@ -116,7 +117,7 @@ const ProfileBody = () => {
   return (
     <>
     {loading?(
-      <p>loading....</p>
+        <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
     ):(
       <>
     <Container maxWidth="md" sx={{marginTop:"60px"}}>

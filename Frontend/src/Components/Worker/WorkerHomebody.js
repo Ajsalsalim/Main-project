@@ -6,6 +6,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import PlaceSearch from './PlaceSearch';
 import {Container,Typography,TextField,Button,Box,Paper,Grid} from '@mui/material'
 import InputLabel from '@mui/material/InputLabel';
+import CircularProgress from '@mui/joy/CircularProgress';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -20,11 +21,8 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
 
   const [professionlist, setProfessionlist] = useState([]);
   const [address, setAddress] = useState('')
-  
-
+  const [loading,setLoading] = useState(true)
   const workerid=localStorage.getItem("id")
-
-
   const [formData, setFormData] = useState({
     email:"",
     gender: "",
@@ -80,6 +78,7 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
         navigate("/login", { state: { isExpired: true } });
 
       }else{
+        setLoading(false)
         console.log(res.data);
         setFormData(res.data)
       }
@@ -172,203 +171,210 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
 
 
   return (
-    <div style={{marginTop:"30px"}}>
-         <Box
-      sx={{
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center",
-        width: 300,
-      height: 300,
-      margin: 'auto', // Center horizontally
-        backgroundColor: 'white',
-        
-      }}
-    >
-        <img
-          src="\images\png-transparent-petroleum-laborer-blue-collar-worker-icon-iron-workers-electronics-hat-service-thumbnail-removebg-preview.png"
-      alt="Centered Image"
-      style={{ maxWidth: '100%', maxHeight: '100%' }}
-    />
    
-    </Box>
-      <div>
-    <Container component="main" maxWidth="md">
-      <Paper elevation={3}>
-        <Box sx={{marginTop:"10px"}} p={3}>
-          <Typography variant="h5" gutterBottom>
-            Create Profile
-          </Typography>
-          <form encType="multipart/form-data"  onSubmit={handleSubmit}>
+    <div style={{marginTop:"30px"}}>
+      {loading?(
+           <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
           
-            <Grid container spacing={3}>
-            <Grid item xs={12}>
-                <TextField
-                  label="Email"
-                  name="email"
-                  fullWidth
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-            
-                <TextField
-                  label="Phone"
-                  name="phone"
-                  fullWidth
-                  variant='outlined'
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+          ):(
+           <>
+            <Box
+            sx={{
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"center",
+              width: 300,
+            height: 300,
+            margin: 'auto', // Center horizontally
+              backgroundColor: 'white',
+              
+            }}
+          >
+              <img
+                src="\images\png-transparent-petroleum-laborer-blue-collar-worker-icon-iron-workers-electronics-hat-service-thumbnail-removebg-preview.png"
+            alt="Centered Image"
+            style={{ maxWidth: '100%', maxHeight: '100%' }}
+          />
+         
+          </Box>
+            <div>
+              
+          <Container component="main" maxWidth="md">
+            <Paper elevation={3}>
+              <Box sx={{marginTop:"10px"}} p={3}>
+                <Typography variant="h5" gutterBottom>
+                  Create Profile
+                </Typography>
+                <form encType="multipart/form-data"  onSubmit={handleSubmit}>
+                
+                  <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                      <TextField
+                        label="Email"
+                        name="email"
+                        fullWidth
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        InputProps={{
+                          readOnly: true,
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
                   
-                />
-              </Grid>
-              <Grid item xs={12}>
-              <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Gender</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          name='gender'
-          value={formData.gender}
-          label="Gender"
-          onChange={handleInputChange}
-          sx={{textAlign:"left"}}
-        >
-          <MenuItem value="male">Male</MenuItem>
-          <MenuItem value="female">Female</MenuItem>
-         
-        </Select>
-      </FormControl>
-              </Grid>
-           
-              <Grid item xs={12}>
-              
-              <PlaceSearch
-              
+                      <TextField
+                        label="Phone"
+                        name="phone"
+                        fullWidth
+                        variant='outlined'
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                name='gender'
+                value={formData.gender}
+                label="Gender"
+                onChange={handleInputChange}
+                sx={{textAlign:"left"}}
+              >
+                <MenuItem value="male">Male</MenuItem>
+                <MenuItem value="female">Female</MenuItem>
                
-                location={address} dispatch={handlePlaceSelect}
-
-                 />
-     
-    
-              </Grid>
-            
-              <Grid item xs={12}>
-              
-        
-              <Autocomplete
-                freeSolo   
-                options={professionlist.map((profession) => profession.name)}
-                renderInput={(params) => (
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <TextField {...params} label="Profession" name='profession' required
-                    onChange={(event)=>handleProfessionChange(event)}
+              </Select>
+            </FormControl>
+                    </Grid>
+                 
+                    <Grid item xs={12}>
                     
-                    />
-                  </div>
-                )}
-                value={formData.profession}
-                onChange={(event, newValue) => handleProfessionChange(event,newValue)} 
-              />
-    
-                </Grid>
-              <Grid item xs={12}>
-              <TextField
-        label="Time preference"
-        name="timepreference"
-        fullWidth
-        select
-        value={formData.timepreference}
-        onChange={handleInputChange}
-        sx={{ textAlign: 'left' }}
-        required
-      >
-        {defaultTimePreferences.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </TextField>
-
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Experience"
-                  name="experience"
-                  fullWidth
-                  rows={4}
-                  value={formData.experience}
-                  onChange={handleInputChange}
-                  required
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Description"
-                  name="description"
-                  fullWidth
-                  multiline
-                  rows={4}
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  required
-                />
-              </Grid>
-              <Grid item xs={12}>
-              <TextField
-                type="file"
-                name="profilepicture"
-                accept="image/*"
-                onChange={handleImageChange}
-                fullWidth
-                variant="outlined"
-                margin="normal"
-                required
-              />
-              </Grid>
-              <Grid item xs={12}>
-              <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Availability</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          name="availability"
-          value={formData.availability}
-          label="Availability"
-          onChange={handleInputChange}
-          sx={{textAlign:"left"}}
-        >
-          <MenuItem value={"true"}>True</MenuItem>
-          <MenuItem value={"false"}>False</MenuItem>
-         
-        </Select>
-      </FormControl>
-                </Grid>
-              {/* Add more fields as needed */}
-              <Grid item xs={12}>
-                <Button  sx={{backgroundColor:"skyblue",color:"white",height:"25px",marginTop:"8px","&:hover":{backgroundColor:"deepskyblue"}}} type="submit" variant="contained" color="primary">
-                  Create
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Box>
-      </Paper>
-    </Container>
-    <ToastContainer/>
-    </div>
-
-    
+                    <PlaceSearch
+                    
+                     
+                      location={address} dispatch={handlePlaceSelect}
       
+                       />
+           
+          
+                    </Grid>
+                  
+                    <Grid item xs={12}>
+                    
+              
+                    <Autocomplete
+                      freeSolo   
+                      options={professionlist.map((profession) => profession.name)}
+                      renderInput={(params) => (
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <TextField {...params} label="Profession" name='profession' required
+                          onChange={(event)=>handleProfessionChange(event)}
+                          
+                          />
+                        </div>
+                      )}
+                      value={formData.profession}
+                      onChange={(event, newValue) => handleProfessionChange(event,newValue)} 
+                    />
+          
+                      </Grid>
+                    <Grid item xs={12}>
+                    <TextField
+              label="Time preference"
+              name="timepreference"
+              fullWidth
+              select
+              value={formData.timepreference}
+              onChange={handleInputChange}
+              sx={{ textAlign: 'left' }}
+              required
+            >
+              {defaultTimePreferences.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </TextField>
+      
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Experience"
+                        name="experience"
+                        fullWidth
+                        rows={4}
+                        value={formData.experience}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Description"
+                        name="description"
+                        fullWidth
+                        multiline
+                        rows={4}
+                        value={formData.description}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <TextField
+                      type="file"
+                      name="profilepicture"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      fullWidth
+                      variant="outlined"
+                      margin="normal"
+                      required
+                    />
+                    </Grid>
+                    <Grid item xs={12}>
+                    <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Availability</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                name="availability"
+                value={formData.availability}
+                label="Availability"
+                onChange={handleInputChange}
+                sx={{textAlign:"left"}}
+              >
+                <MenuItem value={"true"}>True</MenuItem>
+                <MenuItem value={"false"}>False</MenuItem>
+               
+              </Select>
+            </FormControl>
+                      </Grid>
+                    {/* Add more fields as needed */}
+                    <Grid item xs={12}>
+                      <Button  sx={{backgroundColor:"skyblue",color:"white",height:"25px",marginTop:"8px","&:hover":{backgroundColor:"deepskyblue"}}} type="submit" variant="contained" color="primary">
+                        Create
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </form>
+              </Box>
+            </Paper>
+          </Container>
+          <ToastContainer/>
+          </div>
+          </>
+          
+          )}    
     </div>
   )
 }

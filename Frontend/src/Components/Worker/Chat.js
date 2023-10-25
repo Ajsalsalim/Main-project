@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux"
 import { Paper,Grid,Divider,TextField,Typography,List,ListItem,ListItemIcon,ListItemText,Avatar,Fab } from '@mui/material'
 import SendIcon from "@mui/icons-material/Send"
 import axios from "axios"
+import CircularProgress from '@mui/joy/CircularProgress';
 import io from 'socket.io-client';
 import "../User/chatstyles.css"
 import API from '../../api/api';
@@ -21,6 +22,7 @@ const Chat = () => {
     const [userId,setUserid]=useState()
     const [message,setMessage]=useState("")
     const [text,setText] =useState(false)
+    const [loading,setLoading]=useState(true)
     const listRef = useRef(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -65,6 +67,7 @@ const Chat = () => {
               navigate("/login", { state: { isExpired: true } });
       
             }else{
+              setLoading(false)
               setWorkername(res.data.workername)
             setImage(res.data.profilepicture)
             setUsers(res.data.users)
@@ -139,7 +142,7 @@ const Chat = () => {
             </Grid>
         </Grid>
         <Grid sx={{marginTop:"30px",height:"70vh",width:"80%",display:"inline-flex",justifyContent:"center"}} container component={Paper} >
-            <Grid item xs={3}>
+            <Grid sx={{backgroundColor:"skyblue"}} item xs={3}>
                 <List>
                     <ListItem button key="RemySharp">
                         <ListItemIcon>
@@ -148,7 +151,7 @@ const Chat = () => {
                         <ListItemText primary={workername}></ListItemText>
                     </ListItem>
                 </List>
-                <Divider />
+                <Divider sx={{borderWidth:3,borderColor:"black"}} />
                 <Grid item xs={12} style={{padding: '10px'}}>
                     <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth />
                 </Grid>
@@ -171,7 +174,7 @@ const Chat = () => {
             </Grid>
             <Grid item xs={9}>
                 <List sx={{height:"60vh",overflowY:"auto"}} ref={listRef}>
-                    
+                {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
                     {userchat.map((chat,index)=>(
                          <ListItem key={index}>
                          <Grid container> 
