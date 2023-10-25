@@ -114,8 +114,11 @@ const Profile = () => {
   };
   return (
     <div>
-       {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
-      <Container component="main" maxWidth="md">
+       {loading?(
+        <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
+
+       ):(
+        <Container component="main" maxWidth="md">
         <Paper elevation={3}>
           <Box sx={{marginTop:"60px"}} p={3}>
           {!profilecreated?(
@@ -255,6 +258,11 @@ const Profile = () => {
           </Box>
         </Paper>
       </Container>
+
+
+       ) }
+     
+      
       <ToastContainer/>
       
     </div>
