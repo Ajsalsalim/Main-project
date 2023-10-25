@@ -36,14 +36,13 @@ const Appointment = () => {
      },[dispatch])
      
   return (
-    <Container maxWidth="md" sx={{marginTop:"60px",height:"298px"}}>
-       <Paper elevation={4}>
-    <Box  p={3}>
+   <>
       {isLoading?(
          <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />
       ):(
-
-    <>
+        <Container maxWidth="md" sx={{marginTop:"60px",height:"298px"}}>
+        <Paper elevation={4}>
+     <Box  p={3}>
             {appointments && appointments.length > 0 ? (
               <Table aria-label="basic table">
                 <thead>
@@ -99,11 +98,12 @@ const Appointment = () => {
                 No appointments available.
               </Typography>
             )}
-          </>
-      )}
-    </Box>
+             </Box>
       </Paper>
-    </Container>
+    </Container>   
+      )}
+       </>
+   
   )
 }
 
