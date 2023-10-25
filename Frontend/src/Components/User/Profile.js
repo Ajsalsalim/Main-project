@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {useDispatch} from "react-redux"
 import {useNavigate} from "react-router-dom" 
+import CircularProgress from '@mui/joy/CircularProgress'; 
 import {Container,Paper,Box,Typography,Grid,TextField,FormControl,FormControlLabel,FormLabel,RadioGroup,Radio,Button,Avatar} from "@mui/material"
 import axios from "axios"
 import Editprofile from "./Editprofile"
@@ -18,6 +19,7 @@ const Profile = () => {
     address:"",
     profilepicture:null,
   });
+  const [loading,setLoading]=useState(true)
   const [selectedValue, setSelectedValue] = useState('female');
   const [profilecreated,setProfilecreated] = useState(false)
   const [profile,setProfile]=useState()
@@ -39,6 +41,7 @@ const Profile = () => {
         navigate("/login", { state: { isExpired: true } }); 
 
       }else{
+        setLoading(false)
         console.log(res.data);
        setFormData(res.data)
        const profile=res.data;
@@ -111,7 +114,7 @@ const Profile = () => {
   };
   return (
     <div>
-     
+       {loading&& <CircularProgress sx={{marginTop:"200px"}} variant="outlined" />}
       <Container component="main" maxWidth="md">
         <Paper elevation={3}>
           <Box sx={{marginTop:"60px"}} p={3}>
