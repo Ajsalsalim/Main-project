@@ -88,6 +88,7 @@ const WorkerHomebody = ({onPlaceSelect,onAddressChange}) => {
         const profile=res.data;
         if(profile.isprofilecreated===true){
              setProfilecreated(true)
+             setProfile(profile)
             
         }else{
           if(profile.isverified==="rejected"){
