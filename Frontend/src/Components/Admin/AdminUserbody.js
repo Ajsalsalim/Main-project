@@ -5,6 +5,7 @@ import { useEffect,useState } from 'react';
 import {useNavigate} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 import axios from "axios"
+import CircularProgress from '@mui/material/CircularProgress';
 import Button from "@mui/material/Button"
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -34,6 +35,7 @@ const rows = [
 const AdminUserbody = () => {
 
   const [userlist,setUserlist]=useState([])
+  const [loading,setLoading]=useState(true)
   const [updateComponent, setUpdateComponent] = useState(false);
   const [toastify,setToast] = useState(false)
   const navigate =useNavigate();
@@ -58,6 +60,7 @@ const AdminUserbody = () => {
               },5000)
               
             }else{
+              setLoading(false)
               const userlist=res.data.userlist;
             setUserlist(userlist)
 
@@ -151,6 +154,11 @@ const AdminUserbody = () => {
 
   return (
     <>
+     {loading?(
+      <CircularProgress sx={{marginTop:"200px",marginLeft:"300px"}} disableShrink />
+
+    ):(
+      <>
     <TableContainer sx={{marginTop:"50px",marginLeft:"20px"}}  component={Paper} elevation={3} p={3}>  
       
     
@@ -193,6 +201,8 @@ const AdminUserbody = () => {
   
   </TableContainer>
   <TableContainer/>
+  </>
+    )}
   <ToastContainer/>
   {toastify?(
         <Toastify/>
