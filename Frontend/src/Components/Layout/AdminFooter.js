@@ -6,7 +6,7 @@ const AdminFooter = () => {
     sx={{
       width: "100%",
       height: "100px",
-      marginTop:"230px",
+      marginTop:"320px",
       backgroundColor: "black",
     
       
