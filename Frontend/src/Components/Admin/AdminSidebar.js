@@ -46,7 +46,7 @@ function AdminSidebar(props) {
 
   const drawer = (
     <div>
-      <img src="\images\attachment_117444264-removebg-preview.png" alt="logo" height={"110"} width="130" style={{marginTop:"-10px"}} />
+      <img src="\images\attachment_117444264-removebg-preview.png" alt="logo" height={"110"} width="110" style={{marginTop:"-10px"}} />
       <Toolbar />
   
       <Divider />
