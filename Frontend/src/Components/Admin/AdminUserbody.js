@@ -161,6 +161,9 @@ const AdminUserbody = () => {
           <TableCell>Name</TableCell>
           <TableCell>Phone</TableCell>
           <TableCell>Email</TableCell>
+          <TableCell>Gender</TableCell>
+          <TableCell>Address</TableCell>
+          <TableCell>Profilecreated</TableCell>
           <TableCell>Action</TableCell>
 
           
@@ -178,6 +181,9 @@ const AdminUserbody = () => {
            
             <TableCell >{item.phone}</TableCell>
             <TableCell >{item.email}</TableCell>
+            <TableCell >{item.gender}</TableCell>
+            <TableCell >{item.address}</TableCell>
+            <TableCell >{item.isprofilecreated}</TableCell>
             <TableCell><Button sx={{width:"70px",height:"30px"}} type='submit' variant="contained"  color={item.isblocked ? 'error' : 'success'}   onClick={() => handleActionUser(item._id,item.isblocked)}>  {item.isblocked ? 'Unblock' : 'Block'}</Button></TableCell>
 
           </TableRow>
