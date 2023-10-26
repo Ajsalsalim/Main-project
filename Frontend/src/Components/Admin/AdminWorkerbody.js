@@ -10,6 +10,7 @@ import TableBody from '@mui/material/TableBody';
 import Button from "@mui/material/Button"
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
+import CircularProgress from '@mui/material/CircularProgress';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
@@ -46,6 +47,7 @@ const columns = [
 
 const AdminWorkerbody = () => {
     const [workerlist,setWorkerlist]=useState([])
+    const [loading,setLoading]=useState(true)
     const [updateComponent, setUpdateComponent] = useState(false);
     const [toastify,setToast] = useState(false)
     const navigate =useNavigate();
@@ -66,6 +68,7 @@ const AdminWorkerbody = () => {
               },5000)
               
             }else{
+              setLoading(false)
               const workerlist=res.data.workerlist;
               setWorkerlist(workerlist)
 
@@ -165,6 +168,11 @@ const AdminWorkerbody = () => {
 
   return (
     <>
+      {loading?(
+      <CircularProgress sx={{marginTop:"200px",marginLeft:"300px"}} disableShrink />
+
+    ):(
+      <>
     <TableContainer sx={{marginTop:"50px",marginLeft:"20px"}} component={Paper}>
     
 
@@ -212,6 +220,8 @@ const AdminWorkerbody = () => {
   
   </TableContainer>
   <TableContainer/>
+  </>
+    )}
   <ToastContainer/>
   {toastify?(
         <Toastify/>
