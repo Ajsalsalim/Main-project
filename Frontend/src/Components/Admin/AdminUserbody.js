@@ -158,13 +158,13 @@ const AdminUserbody = () => {
     <Table sx={{}} aria-label="simple table">
       <TableHead>
         <TableRow>
-          <TableCell>Name</TableCell>
-          <TableCell>Phone</TableCell>
-          <TableCell>Email</TableCell>
-          <TableCell>Gender</TableCell>
-          <TableCell>Address</TableCell>
-          <TableCell>Profilecreated</TableCell>
-          <TableCell>Action</TableCell>
+          <TableCell>NAME</TableCell>
+          <TableCell>PHONE</TableCell>
+          <TableCell>EMAIL</TableCell>
+          <TableCell>GENDER</TableCell>
+          <TableCell>ADDRESS</TableCell>
+          <TableCell>PROFILECREATED</TableCell>
+          <TableCell>ACTION</TableCell>
 
           
         </TableRow>
