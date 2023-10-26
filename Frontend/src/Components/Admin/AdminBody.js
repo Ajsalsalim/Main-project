@@ -11,6 +11,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
+import CircularProgress from '@mui/material/CircularProgress';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button, Container, Typography,Box,Paper,TextField, } from '@mui/material';
 import Toastify from '../Common/Toastify'
@@ -19,6 +20,7 @@ import Toastify from '../Common/Toastify'
 
 const AdminBody = () => {
   const [professionlist,setProfessionlist]=useState([]);
+  const [loading,setLoading]=useState(true)
   const [open,setOpen]=useState(false)
    const [delet,setDelet]=useState(false)
    const [toastify,setToast] = useState(false)
@@ -43,6 +45,7 @@ const AdminBody = () => {
           },5000)
            
         }else{
+          setLoading(false)
           console.log(res.data.professionlist);
           setProfessionlist(res.data.professionlist)
 
@@ -147,6 +150,12 @@ const AdminBody = () => {
     
   return (
     <>
+    {loading?(
+      <CircularProgress sx={{marginTop:"200px"}} disableShrink />
+
+    ):(
+
+ 
       <Container sx={{ marginTop: '50px' }}>
         <Typography sx={{ textAlign: 'left' }}>PROFESSIONS</Typography>
         <div
@@ -207,6 +216,7 @@ const AdminBody = () => {
           ))}
         </div>
       </Container>
+         )}
 
       <Modal
         open={open}
