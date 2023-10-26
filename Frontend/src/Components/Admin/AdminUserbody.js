@@ -183,7 +183,7 @@ const AdminUserbody = () => {
             <TableCell >{item.email}</TableCell>
             <TableCell >{item.gender}</TableCell>
             <TableCell >{item.address}</TableCell>
-            <TableCell >{item.isprofilecreated}</TableCell>
+            <TableCell>{item.isprofilecreated ? "Yes" : "No"}</TableCell>
             <TableCell><Button sx={{width:"70px",height:"30px"}} type='submit' variant="contained"  color={item.isblocked ? 'error' : 'success'}   onClick={() => handleActionUser(item._id,item.isblocked)}>  {item.isblocked ? 'Unblock' : 'Block'}</Button></TableCell>
 
           </TableRow>
