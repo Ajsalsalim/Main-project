@@ -151,7 +151,9 @@ const AdminBody = () => {
   return (
     <>
     {loading?(
-      <CircularProgress sx={{marginTop:"200px",display:"flex",justifyContent:"center"}} disableShrink />
+     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+     <CircularProgress sx={{ marginTop: "200px" }} disableShrink />
+   </div>
 
     ):(
 
