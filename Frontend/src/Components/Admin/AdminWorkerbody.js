@@ -198,8 +198,8 @@ const AdminWorkerbody = () => {
             <TableCell >{item.phone}</TableCell>
             <TableCell >{item.email}</TableCell>
             <TableCell >{item.gender}</TableCell>
-            <TableCell >{item.map((profession)=>profession.name)}</TableCell>
-            <TableCell >{item.map((profession)=>profession.experience)}Years</TableCell>
+            <TableCell >{item.profession.map((profession)=>profession.name)}</TableCell>
+            <TableCell >{item.profession.map((profession)=>profession.experience)}Years</TableCell>
             <TableCell >{item.location}</TableCell>
             <TableCell>{item.isprofilecreated ? "Yes" : "No"}</TableCell>
             <TableCell >{item.isverified}</TableCell>
