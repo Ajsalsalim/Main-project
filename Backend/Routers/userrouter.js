@@ -20,6 +20,7 @@ const {signup,
   bookingdetails,
   userbooking,
   updatebooking,
+  bookedslots
 } = require("../Controllers/usercontroller")
 const {otp} = require("../Middlewares/otp")
 const path = require("path");
@@ -70,6 +71,7 @@ userrouter.get("/appointments",verifyToken,getappointments)
 userrouter.get("/bookingdetails",verifyToken,bookingdetails)
 userrouter.get("/userbooking",verifyToken,userbooking)
 userrouter.get("/updatebooking",verifyToken,updatebooking)
+userrouter.get("/bookedslots",verifyToken,bookedslots)
 
 
 module.exports=userrouter

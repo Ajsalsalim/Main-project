@@ -713,6 +713,16 @@ const bookingdetails = async (req, res) => {
 
    
   }
+
+  const bookedslots=async(req,res)=>{
+    try{
+        
+
+    }catch(error){
+        console.log(error);
+    }
+
+  }
   
 
 
