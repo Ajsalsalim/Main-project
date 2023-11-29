@@ -38,6 +38,7 @@ const Viewprofile = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
  const [appointment,setAppointment]=useState()
+ const [bookedslots,setBookedslots] = useState([]);
  const navigate = useNavigate();
  const dispatch = useDispatch();
 
@@ -84,6 +85,23 @@ const Viewprofile = () => {
       }
 
      })
+  },[])
+
+  useEffect(()=>{
+      API.get(`/bookedslots?workerid=${id}`)
+      .then((res)=>{
+        console.log(res.data.message);
+        if(res.data.message==="booked slots"){
+           setBookedslots(res.data.bookedslots)
+        }else if(res.data.message==="Token invalid"){
+          dispatch(logout());
+          navigate("/login", { state: { isExpired: true } });
+  
+        }
+  
+
+      })
+
   },[])
 
  
@@ -197,10 +215,16 @@ const HandleAction = async()=>{
                <Alert severity="success">booking request send succesfully</Alert>
          
             ):(
-              <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.surface', mx: 'auto' }}>
-             
-              <Button onClick={handleBookServiceClick}>Book service</Button>
-            </ButtonGroup>
+              <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+              <ButtonGroup variant="outlined" sx={{ bgcolor: 'background.surface' }}>
+                <Button onClick={handleBookServiceClick}>Book service</Button>
+              </ButtonGroup>
+              <Typography>Already booked slots:</Typography>
+                {bookedslots.map((slot, index) => (
+                <Typography key={index}>{slot}</Typography>
+              ))}
+
+            </Box>
             )
 }
           </CardActions>

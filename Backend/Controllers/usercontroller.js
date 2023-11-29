@@ -716,7 +716,18 @@ const bookingdetails = async (req, res) => {
 
   const bookedslots=async(req,res)=>{
     try{
-        
+     
+        const {workerid} =req.query;
+        const appointments= await Appointment.find({worker:workerid,status:{$ne:"Completed"}})
+        const bookedslots = appointments.map(appointment => {
+            const mergedDateTime = appointment.date+"  "+appointment.time
+            return mergedDateTime;
+          });
+      
+          console.log(bookedslots);
+
+          return res.json({message:"booked slots",bookedslots:bookedslots})
+
 
     }catch(error){
         console.log(error);
@@ -747,3 +758,4 @@ exports.updatebooking=updatebooking
 exports.edituser=edituser
 exports.editworker=editworker
 exports.workerfeedback=workerfeedback
+exports.bookedslots=bookedslots
